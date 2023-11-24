@@ -1,3 +1,4 @@
+//QN2
 // There is a string S that consists only of non-zero digits (1-9). We can choose two adjacent digits in S and replace them with their sum, but only if the sum is not greatel
 // than 9. For example, if S = "356",
 // ", we can replace "35" with "8", achieving "86", but we
@@ -22,23 +23,19 @@
 // • string S consists only of non-zero digits (1-9).
 
 function solution(S) {
-  // Implement your solution here
-  // Convert the string to an array for easier manipulation
-  let result = S.split("");
-  // Iterate through the array
-  for (let i = 0; i < result.length - 1; i++) {
-    // Check if adjacent digits can be replaced
-    if (parseInt(result[i]) + parseInt(result[i + 1]) <= 9) {
-      // Replace the two digits with their sum
-      result.splice(
-        i,
-        2,
-        (parseInt(result[i]) + parseInt(result[i + 1])).toString()
-      );
-      // Move the index back to check the previous pair
-      i = Math.max(i - 2, -1);
+  let stack = [];
+
+  for (let i = 0; i < S.length; i++) {
+    // If the stack is not empty and the current element added to the top element of the stack is less than or equal to 9
+    while (
+      stack.length > 0 &&
+      parseInt(S[i]) + parseInt(stack[stack.length - 1]) <= 9
+    ) {
+      let top = stack.pop(); // Pop the top element
+      S[i] = (parseInt(S[i]) + parseInt(top)).toString(); // Replace current element with the sum
     }
+    stack.push(S[i]); // Push the current element onto the stack
   }
-  // Join the array and return the final string
-  return result.join("");
+
+  return stack.join(""); // Join the stack to get the final result
 }

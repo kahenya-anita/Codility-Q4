@@ -1,3 +1,4 @@
+//QN1
 // We call an array switching if all numbers in even positions are equal and all numbers in odd positions are equal.
 // For example: [3, -7, 3, -7, 3] and [4, 4, 4] are switching, but [5, 5, 4, 5, 4] and [-3, 2, 3] are not switching.
 // What is the length of the longest switching slice (continuous fragment) in a given array A?
